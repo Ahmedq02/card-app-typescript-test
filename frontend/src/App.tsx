@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from './components/NavBar'
 import AllEntries from './routes/AllEntries'
 import NewEntry from './routes/NewEntry'
@@ -11,11 +11,17 @@ import {
 } from "react-router-dom";
 
 export default function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <section>
+    <section className={darkMode ? "dark bg-gray-900" : ""}>
   <Router>
     <EntryProvider>
-    <NavBar></NavBar>
+    <NavBar toggleDarkMode={toggleDarkMode} darkMode={darkMode}></NavBar>
       <Routes>
         <Route path="/" element={<AllEntries/>}>
         </Route>
