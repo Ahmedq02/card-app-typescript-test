@@ -49,7 +49,7 @@ export default function EditEntry() {
           onChange={handleInputChange}
         />
         <p className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 w-full p-1 text-center text-sm text-white bg-gray-900 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Date Scheduled
+          Date Scheduled
         </p>
       </div>
       <div className="relative inline-block group">

@@ -102,3 +102,28 @@ cd ./dist
 
 npx serve -p 3000 -s
 ```
+# Write Up
+
+## Dark Mode
+
+I developed a dark mode feature by using a new component DarkSwitch to trigger the style changes:
+- First I created the component in the components subdirectory as a button that has an onChange event.
+- I then made changes to the App.tsx file to make a new state darkMode which I could use to globally track the dark mode state. It is in the App.tsx since this is the top level file.
+- The toggleDarkMode is used to set the dark mode to be the opposite of what it was.
+- I then passed in darkMode and toggleDarkMode to the Navbar and then the DarkSwitch to use them to set the dark mode.
+- Now that the button can set dark mode I made changes to the tailwind.config.js file to utilise the dark: class functionality, This way I can easily include dark mode alternative styles by adding a dark: prefix to any styles that have a parent component with the class dark.
+- Finally I added conditional code to include the dark class in the top level section and then added all of the dark mode changes to the relevant components. This way dark is set globally depending on the darkMode state which is set by the DarkSwitch achieving the desired funcitonality.
+
+## Scheduled Date
+
+I addded a scheduled date field to the cards to come before the created at date:
+- I first made changes to the schema.prisma file to add the scheduled field to the Entry model.
+- After including the field I made the relevant changes to other files in the backend that utilised Entry to include the new field.
+- I then created migrations and applied them to make the changes in the backend.
+- Once the backend changes were done I made changes to the frontend route files. EditEntry and NewEntry were first changed to includde another input field for the scheduled date, similar to the input for the date created field.
+- I then made changes to AllEntries to display the sceduled date. I reduced the size of the dates and added some text to help identify the different dates before styling them to improve positioning.
+- Finally I added some tooltips by using hover styles to the pages for editing and creating cards so the user can tell what the dates reperesent. I decided to use the tooltips instead of static text just because the cards were already quite crowded so it improves readability.
+
+## Testing
+
+I added some tests to the backend to test the functionality of the application. Tests were added to the server.test.ts file and they include tests to test all of the successful CRUD operations while also testing the instances where the program is expected to fail. This includes testing status codes and expected response values.
