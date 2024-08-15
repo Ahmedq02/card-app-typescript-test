@@ -102,11 +102,13 @@ cd ./dist
 
 npx serve -p 3000 -s
 ```
+
 # Write Up
 
 ## Dark Mode
 
 I developed a dark mode feature by using a new component DarkSwitch to trigger the style changes:
+
 - First I created the component in the components subdirectory as a button that has an onChange event.
 - I then made changes to the App.tsx file to make a new state darkMode which I could use to globally track the dark mode state. It is in the App.tsx since this is the top level file.
 - The toggleDarkMode is used to set the dark mode to be the opposite of what it was.
@@ -117,6 +119,7 @@ I developed a dark mode feature by using a new component DarkSwitch to trigger t
 ## Scheduled Date
 
 I addded a scheduled date field to the cards to come before the created at date:
+
 - I first made changes to the schema.prisma file to add the scheduled field to the Entry model.
 - After including the field I made the relevant changes to other files in the backend that utilised Entry to include the new field.
 - I then created migrations and applied them to make the changes in the backend.

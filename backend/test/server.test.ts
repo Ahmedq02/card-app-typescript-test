@@ -1,8 +1,7 @@
-import { server } from "../src/server"
+import { Entry } from "@prisma/client";
+import Fastify, { FastifyInstance } from "fastify";
 import Prisma from "../src/db";
-import Fastify, {FastifyInstance} from "fastify";
-import { server as createServer } from '../src/server';
-import { Entry } from '@prisma/client';
+import { server as createServer, server } from "../src/server";
 
 describe("server test", () => {
   it("should assert 1 + 1 is 2", () => {
@@ -13,7 +12,7 @@ describe("server test", () => {
 let fastify: FastifyInstance;
 
 beforeAll(async () => {
-  fastify = createServer; 
+  fastify = createServer;
   await fastify.listen({ port: 0 });
 });
 
@@ -22,7 +21,6 @@ afterAll(async () => {
 });
 
 describe("Fastify Server Tests", () => {
-
   // Successfully return the array of entries
   test("GET /get/ should return an array of entries", async () => {
     const response = await fastify.inject({
@@ -45,7 +43,7 @@ describe("Fastify Server Tests", () => {
         created_at: new Date(),
       },
     });
-  
+
     const response = await fastify.inject({
       method: "GET",
       url: `/get/${newEntry.id}`,
@@ -131,7 +129,7 @@ describe("Fastify Server Tests", () => {
 
   // Fail to fetch a non-existing entry by ID
   test("GET /get/:id should fail if the entry does not exist", async () => {
-    const nonExistingId = 'non-existing-id';
+    const nonExistingId = "non-existing-id";
 
     const response = await fastify.inject({
       method: "GET",
@@ -165,7 +163,7 @@ describe("Fastify Server Tests", () => {
 
   // Fail to delete a non-existing entry by ID
   test("DELETE /delete/:id should fail if the entry does not exist", async () => {
-    const nonExistingId = 'non-existing-id';
+    const nonExistingId = "non-existing-id";
 
     const response = await fastify.inject({
       method: "DELETE",
